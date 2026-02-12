@@ -36,3 +36,16 @@ async def get_overview_stats() -> OverviewStats:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error retrieving overview statistics",
         )
+
+@router.get("/amount-distribution", response_model=AmountDistribution)
+async def get_amount_distribution() -> AmountDistribution:
+    """Get amount distribution statistics."""
+    try:
+        service = get_service()
+        return service.get_amount_distribution()
+    except Exception as e:
+        logger.error(f"Error getting amount distribution: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error retrieving amount distribution",
+        )
