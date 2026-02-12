@@ -50,3 +50,12 @@ async def lifespan(app: FastAPI):
         raise
     yield
     logger.info("Shutting down Transaction API")
+
+
+# Create FastAPI app
+app = FastAPI(
+    title=API_TITLE,
+    description=API_DESCRIPTION,
+    version=API_VERSION,
+    lifespan=lifespan,
+)
