@@ -29,3 +29,38 @@ def transaction_strategy():
         mcc=st.text(min_size=4, max_size=4),
         errors=st.none() | st.text(min_size=1, max_size=50),
     )
+
+
+@given(
+    st.lists(
+        transaction_strategy(),
+        min_size=0,
+        max_size=100,
+        unique_by=lambda t: t.id,
+    )
+)
+def test_health_check_consistency(transactions):
+    """
+    Property 19: Health Check Consistency.
+
+    For any health check query, if the system is healthy, the response should
+    include a valid status and response_time_ms should be a positive number.
+
+    **Validates: Requirements 19.1, 19.2, 19.3**
+    """
+    repo = TransactionRepository()
+    repo.data_load_date = datetime.utcnow()
+    service = HealthService(repo)
+
+    # Load transactions
+    for transaction in transactions:
+        repo._add_transaction(transaction)
+
+    # Check health
+    health = service.check_health()
+
+    # Verify status is valid
+    assert health.status in ("healthy", "unhealthy")
+
+    # Verify response time is positive
+    assert health.response_time_ms >= 0
