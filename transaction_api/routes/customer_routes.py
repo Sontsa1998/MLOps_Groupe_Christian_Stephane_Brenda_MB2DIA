@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from transaction_api import app_context
 from transaction_api.logging_config import get_logger
-from transaction_api.models import Customer, CustomerSummary, PaginatedResponse
+from transaction_api.models import Customer, CustomerSummary, PaginatedResponse, TopCustomer
 from transaction_api.services.customer_service import CustomerService
 
 logger = get_logger(__name__)
@@ -36,6 +36,22 @@ async def get_all_customers(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error retrieving customers",
+        )
+
+
+@router.get("/Ranked/top", response_model=list[TopCustomer])
+async def get_top_customers(
+    n: int = Query(10, ge=1, le=1000, description="Number of top customers"),
+) -> list[TopCustomer]:
+    """Get top n customers by transaction count."""
+    try:
+        service = get_service()
+        return service.get_top_customers(n=n)
+    except Exception as e:
+        logger.error(f"Error getting top customers: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error retrieving top customers",
         )
 
 
