@@ -23,3 +23,16 @@ def get_service() -> StatisticsService:
             detail="Repository not initialized",
         )
     return StatisticsService(app_context.repository)
+
+@router.get("/overview", response_model=OverviewStats)
+async def get_overview_stats() -> OverviewStats:
+    """Get overview statistics."""
+    try:
+        service = get_service()
+        return service.get_overview_stats()
+    except Exception as e:
+        logger.error(f"Error getting overview stats: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error retrieving overview statistics",
+        )
