@@ -86,3 +86,12 @@ class AmountDistribution(BaseModel):
     """Amount distribution statistics."""
 
     buckets: List[AmountBucket] = Field(..., description="Buckets")
+
+
+class TypeStats(BaseModel):
+    """Statistics for a transaction type."""
+
+    type: str = Field(..., description="Transaction type")
+    count: int = Field(..., description="Count")
+    total_amount: float = Field(..., description="Total amount")
+    average_amount: float = Field(..., description="Average amount")
