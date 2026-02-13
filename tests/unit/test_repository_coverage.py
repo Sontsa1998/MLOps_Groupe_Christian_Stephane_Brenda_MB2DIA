@@ -57,3 +57,11 @@ class TestRepositoryExtended:
         filters = SearchFilters(use_chip="Swipe Transaction")
         result, total = repository.search(filters)
         assert isinstance(result, list)
+
+    def test_search_by_merchant_city(self, repository):
+        """Test searching by merchant city."""
+        from transaction_api.models import SearchFilters
+
+        filters = SearchFilters(merchant_city="Beulah")
+        result, total = repository.search(filters)
+        assert isinstance(result, list)
