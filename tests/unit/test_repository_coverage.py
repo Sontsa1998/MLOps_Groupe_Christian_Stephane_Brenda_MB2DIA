@@ -65,3 +65,8 @@ class TestRepositoryExtended:
         filters = SearchFilters(merchant_city="Beulah")
         result, total = repository.search(filters)
         assert isinstance(result, list)
+
+    def test_get_fraud_transactions(self, repository):
+        """Test getting fraud transactions."""
+        result = repository.get_fraud_transactions()
+        assert isinstance(result, list)
