@@ -300,6 +300,15 @@ class TransactionRepository:
         paginated_transactions = transactions[offset: offset + limit]
 
         return paginated_transactions, total_count
+    
+    def get_all_by_type(self, mcc: str) -> List[Transaction]:
+        """Get all transactions of a specific type."""
+        transaction_ids = self.type_index.get(mcc, [])
+        return [
+            self.transactions[tid]
+            for tid in transaction_ids
+            if tid in self.transactions
+        ]
 
 
 
