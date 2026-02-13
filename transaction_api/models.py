@@ -62,3 +62,13 @@ class PaginatedResponse(BaseModel, Generic[T]):
 
     data: List[T] = Field(..., description="List of items")
     pagination: PaginationMetadata = Field(..., description="Pagination info")
+
+
+class OverviewStats(BaseModel):
+    """Overview statistics."""
+
+    total_count: int = Field(..., description="Total transactions")
+    total_amount: float = Field(..., description="Total amount")
+    average_amount: float = Field(..., description="Average amount")
+    min_date: datetime = Field(..., description="Earliest date")
+    max_date: datetime = Field(..., description="Latest date")
