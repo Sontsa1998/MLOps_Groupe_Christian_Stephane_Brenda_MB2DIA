@@ -34,8 +34,26 @@ class TestRepositoryExtended:
         assert isinstance(result, list)
         assert isinstance(total, int)
     
+  
     def test_get_by_merchant(self, repository):
         """Test getting transactions by merchant."""
         result, total = repository.get_by_merchant("1556")
         assert isinstance(result, list)
         assert isinstance(total, int)
+
+    def test_search(self, repository):
+        """Test searching transactions."""
+        from transaction_api.models import SearchFilters
+
+        filters = SearchFilters(min_amount=100, max_amount=500)
+        result, total = repository.search(filters)
+        assert isinstance(result, list)
+        assert isinstance(total, int)
+
+    def test_search_by_use_chip(self, repository):
+        """Test searching by use_chip."""
+        from transaction_api.models import SearchFilters
+
+        filters = SearchFilters(use_chip="Swipe Transaction")
+        result, total = repository.search(filters)
+        assert isinstance(result, list)
