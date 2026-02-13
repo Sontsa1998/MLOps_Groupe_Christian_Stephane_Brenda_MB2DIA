@@ -27,3 +27,9 @@ class TestRepositoryExtended:
             result = repository.get_by_id(transaction_id)
             assert result is not None
             assert result.id == transaction_id
+
+    def test_get_by_customer(self, repository):
+        """Test getting transactions by customer."""
+        result, total = repository.get_by_customer("1556")
+        assert isinstance(result, list)
+        assert isinstance(total, int)
