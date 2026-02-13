@@ -40,8 +40,7 @@ if "customer_page" not in st.session_state:
 if "transaction_page" not in st.session_state:
     st.session_state.transaction_page = 1
 if "fraud_page" not in st.session_state:
-    st.session_state.fraud_page = 1
-    
+    st.session_state.fraud_page = 1    
 # Sidebar navigation
 st.sidebar.title("📊 Navigation")
 page = st.sidebar.radio(

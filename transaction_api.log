@@ -165,3 +165,285 @@
 2026-02-13 16:38:34,555 - transaction_api.repository - INFO - Transaction :500000. Error: 0
 2026-02-13 16:38:34,566 - transaction_api.main - INFO - Successfully loaded 500000 transactions
 2026-02-13 16:39:15,611 - transaction_api.main - INFO - Shutting down Transaction API
+2026-02-13 16:57:37,621 - transaction_api.repository - INFO - Loading transactions from ./data/transactions.csv
+2026-02-13 16:57:38,005 - transaction_api.repository - INFO - Loaded 10000 transactions
+2026-02-13 16:57:38,415 - transaction_api.repository - INFO - Loaded 20000 transactions
+2026-02-13 16:57:38,775 - transaction_api.repository - INFO - Loaded 30000 transactions
+2026-02-13 16:57:39,134 - transaction_api.repository - INFO - Loaded 40000 transactions
+2026-02-13 16:57:39,561 - transaction_api.repository - INFO - Loaded 50000 transactions
+2026-02-13 16:57:39,919 - transaction_api.repository - INFO - Loaded 60000 transactions
+2026-02-13 16:57:40,282 - transaction_api.repository - INFO - Loaded 70000 transactions
+2026-02-13 16:57:40,719 - transaction_api.repository - INFO - Loaded 80000 transactions
+2026-02-13 16:57:41,084 - transaction_api.repository - INFO - Loaded 90000 transactions
+2026-02-13 16:57:41,482 - transaction_api.repository - INFO - Loaded 100000 transactions
+2026-02-13 16:57:41,936 - transaction_api.repository - INFO - Loaded 110000 transactions
+2026-02-13 16:57:42,294 - transaction_api.repository - INFO - Loaded 120000 transactions
+2026-02-13 16:57:42,664 - transaction_api.repository - INFO - Loaded 130000 transactions
+2026-02-13 16:57:43,025 - transaction_api.repository - INFO - Loaded 140000 transactions
+2026-02-13 16:57:43,386 - transaction_api.repository - INFO - Loaded 150000 transactions
+2026-02-13 16:57:43,857 - transaction_api.repository - INFO - Loaded 160000 transactions
+2026-02-13 16:57:44,217 - transaction_api.repository - INFO - Loaded 170000 transactions
+2026-02-13 16:57:44,585 - transaction_api.repository - INFO - Loaded 180000 transactions
+2026-02-13 16:57:44,950 - transaction_api.repository - INFO - Loaded 190000 transactions
+2026-02-13 16:57:45,316 - transaction_api.repository - INFO - Loaded 200000 transactions
+2026-02-13 16:57:45,802 - transaction_api.repository - INFO - Loaded 210000 transactions
+2026-02-13 16:57:46,159 - transaction_api.repository - INFO - Loaded 220000 transactions
+2026-02-13 16:57:46,522 - transaction_api.repository - INFO - Loaded 230000 transactions
+2026-02-13 16:57:46,879 - transaction_api.repository - INFO - Loaded 240000 transactions
+2026-02-13 16:57:47,245 - transaction_api.repository - INFO - Loaded 250000 transactions
+2026-02-13 16:57:47,610 - transaction_api.repository - INFO - Loaded 260000 transactions
+2026-02-13 16:57:47,970 - transaction_api.repository - INFO - Loaded 270000 transactions
+2026-02-13 16:57:48,474 - transaction_api.repository - INFO - Loaded 280000 transactions
+2026-02-13 16:57:48,831 - transaction_api.repository - INFO - Loaded 290000 transactions
+2026-02-13 16:57:49,193 - transaction_api.repository - INFO - Loaded 300000 transactions
+2026-02-13 16:57:49,573 - transaction_api.repository - INFO - Loaded 310000 transactions
+2026-02-13 16:57:49,940 - transaction_api.repository - INFO - Loaded 320000 transactions
+2026-02-13 16:57:50,303 - transaction_api.repository - INFO - Loaded 330000 transactions
+2026-02-13 16:57:50,663 - transaction_api.repository - INFO - Loaded 340000 transactions
+2026-02-13 16:57:51,052 - transaction_api.repository - INFO - Loaded 350000 transactions
+2026-02-13 16:57:51,435 - transaction_api.repository - INFO - Loaded 360000 transactions
+2026-02-13 16:57:52,015 - transaction_api.repository - INFO - Loaded 370000 transactions
+2026-02-13 16:57:52,404 - transaction_api.repository - INFO - Loaded 380000 transactions
+2026-02-13 16:57:52,796 - transaction_api.repository - INFO - Loaded 390000 transactions
+2026-02-13 16:57:53,178 - transaction_api.repository - INFO - Loaded 400000 transactions
+2026-02-13 16:57:53,557 - transaction_api.repository - INFO - Loaded 410000 transactions
+2026-02-13 16:57:54,010 - transaction_api.repository - INFO - Loaded 420000 transactions
+2026-02-13 16:57:54,509 - transaction_api.repository - INFO - Loaded 430000 transactions
+2026-02-13 16:57:54,909 - transaction_api.repository - INFO - Loaded 440000 transactions
+2026-02-13 16:57:55,314 - transaction_api.repository - INFO - Loaded 450000 transactions
+2026-02-13 16:57:55,711 - transaction_api.repository - INFO - Loaded 460000 transactions
+2026-02-13 16:57:56,097 - transaction_api.repository - INFO - Loaded 470000 transactions
+2026-02-13 16:57:56,715 - transaction_api.repository - INFO - Loaded 480000 transactions
+2026-02-13 16:57:57,079 - transaction_api.repository - INFO - Loaded 490000 transactions
+2026-02-13 16:57:57,452 - transaction_api.repository - INFO - Loaded 500000 transactions
+2026-02-13 16:57:57,452 - transaction_api.repository - INFO - Transaction :500000. Error: 0
+2026-02-13 16:57:57,542 - httpx - INFO - HTTP Request: GET http://testserver/api/customers?page=1&limit=10 "HTTP/1.1 200 OK"
+2026-02-13 16:57:57,549 - httpx - INFO - HTTP Request: GET http://testserver/api/customers?page=0&limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-13 16:57:57,556 - httpx - INFO - HTTP Request: GET http://testserver/api/customers/1556 "HTTP/1.1 200 OK"
+2026-02-13 16:57:57,561 - httpx - INFO - HTTP Request: GET http://testserver/api/customers/nonexistent "HTTP/1.1 200 OK"
+2026-02-13 16:57:58,379 - httpx - INFO - HTTP Request: GET http://testserver/api/customers/Ranked/top?n=10 "HTTP/1.1 200 OK"
+2026-02-13 16:57:59,220 - httpx - INFO - HTTP Request: GET http://testserver/api/customers/Ranked/top "HTTP/1.1 200 OK"
+2026-02-13 16:57:59,547 - httpx - INFO - HTTP Request: GET http://testserver/api/transaction?page=1&limit=10 "HTTP/1.1 200 OK"
+2026-02-13 16:57:59,876 - httpx - INFO - HTTP Request: GET http://testserver/api/transaction?page=1&limit=1 "HTTP/1.1 200 OK"
+2026-02-13 16:57:59,879 - httpx - INFO - HTTP Request: GET http://testserver/api/transaction/8073847 "HTTP/1.1 200 OK"
+2026-02-13 16:58:01,092 - httpx - INFO - HTTP Request: POST http://testserver/api/transaction/transactionResearch/search "HTTP/1.1 200 OK"
+2026-02-13 16:58:06,232 - httpx - INFO - HTTP Request: POST http://testserver/api/transaction/transactionResearch/search "HTTP/1.1 200 OK"
+2026-02-13 16:58:36,466 - httpx - INFO - HTTP Request: POST http://testserver/api/transaction/transactionResearch/search "HTTP/1.1 200 OK"
+2026-02-13 16:58:37,681 - httpx - INFO - HTTP Request: POST http://testserver/api/transaction/transactionResearch/search "HTTP/1.1 200 OK"
+2026-02-13 16:58:37,998 - httpx - INFO - HTTP Request: GET http://testserver/api/transaction/Latest/recent?limit=10 "HTTP/1.1 200 OK"
+2026-02-13 16:58:38,207 - httpx - INFO - HTTP Request: GET http://testserver/api/transaction/Type/types "HTTP/1.1 200 OK"
+2026-02-13 16:58:38,233 - httpx - INFO - HTTP Request: GET http://testserver/api/fraud/summary "HTTP/1.1 200 OK"
+2026-02-13 16:58:38,507 - httpx - INFO - HTTP Request: GET http://testserver/api/fraud/by-type "HTTP/1.1 200 OK"
+2026-02-13 16:58:38,863 - httpx - INFO - HTTP Request: GET http://testserver/api/stats/daily "HTTP/1.1 200 OK"
+2026-02-13 16:58:39,557 - httpx - INFO - HTTP Request: GET http://testserver/api/stats/overview "HTTP/1.1 200 OK"
+2026-02-13 16:58:40,266 - httpx - INFO - HTTP Request: GET http://testserver/api/stats/overview "HTTP/1.1 200 OK"
+2026-02-13 16:58:40,281 - httpx - INFO - HTTP Request: GET http://testserver/api/system/health "HTTP/1.1 200 OK"
+2026-02-13 16:58:40,772 - httpx - INFO - HTTP Request: GET http://testserver/api/system/metadata "HTTP/1.1 200 OK"
+2026-02-13 16:58:55,464 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,467 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,480 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,483 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,488 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,490 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,493 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,508 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,510 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,513 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,525 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,529 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,535 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,558 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,655 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,730 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,787 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,836 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,852 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,878 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,906 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,933 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,949 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,973 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,988 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:55,993 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,021 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,048 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,107 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,153 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,166 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,181 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,230 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,261 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,270 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,288 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,343 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,387 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,412 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,433 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,454 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,484 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,501 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,520 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,533 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,553 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,567 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,588 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,617 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,645 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,659 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,791 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,822 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,827 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,832 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,837 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:56,841 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,120 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,165 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,198 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,227 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,301 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,340 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,380 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,430 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,464 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,509 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,561 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,611 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,660 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,717 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,774 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,815 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,841 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,871 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,897 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,908 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,915 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,945 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:57,971 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,010 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,043 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,057 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,066 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,088 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,102 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,116 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,131 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,143 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,158 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,169 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,185 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,213 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,244 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,264 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,290 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,305 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,310 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,371 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:58:58,429 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent_id_12345
+2026-02-13 16:59:51,646 - transaction_api.repository - INFO - Loading transactions from ./data/transactions.csv
+2026-02-13 16:59:52,015 - transaction_api.repository - INFO - Loaded 10000 transactions
+2026-02-13 16:59:52,379 - transaction_api.repository - INFO - Loaded 20000 transactions
+2026-02-13 16:59:53,147 - transaction_api.repository - INFO - Loaded 30000 transactions
+2026-02-13 16:59:53,506 - transaction_api.repository - INFO - Loaded 40000 transactions
+2026-02-13 16:59:53,865 - transaction_api.repository - INFO - Loaded 50000 transactions
+2026-02-13 16:59:54,317 - transaction_api.repository - INFO - Loaded 60000 transactions
+2026-02-13 16:59:54,675 - transaction_api.repository - INFO - Loaded 70000 transactions
+2026-02-13 16:59:55,034 - transaction_api.repository - INFO - Loaded 80000 transactions
+2026-02-13 16:59:55,490 - transaction_api.repository - INFO - Loaded 90000 transactions
+2026-02-13 16:59:55,842 - transaction_api.repository - INFO - Loaded 100000 transactions
+2026-02-13 16:59:56,192 - transaction_api.repository - INFO - Loaded 110000 transactions
+2026-02-13 16:59:56,541 - transaction_api.repository - INFO - Loaded 120000 transactions
+2026-02-13 16:59:56,893 - transaction_api.repository - INFO - Loaded 130000 transactions
+2026-02-13 16:59:57,360 - transaction_api.repository - INFO - Loaded 140000 transactions
+2026-02-13 16:59:57,713 - transaction_api.repository - INFO - Loaded 150000 transactions
+2026-02-13 16:59:58,071 - transaction_api.repository - INFO - Loaded 160000 transactions
+2026-02-13 16:59:58,437 - transaction_api.repository - INFO - Loaded 170000 transactions
+2026-02-13 16:59:58,805 - transaction_api.repository - INFO - Loaded 180000 transactions
+2026-02-13 16:59:59,300 - transaction_api.repository - INFO - Loaded 190000 transactions
+2026-02-13 16:59:59,660 - transaction_api.repository - INFO - Loaded 200000 transactions
+2026-02-13 17:00:00,014 - transaction_api.repository - INFO - Loaded 210000 transactions
+2026-02-13 17:00:00,382 - transaction_api.repository - INFO - Loaded 220000 transactions
+2026-02-13 17:00:00,738 - transaction_api.repository - INFO - Loaded 230000 transactions
+2026-02-13 17:00:01,098 - transaction_api.repository - INFO - Loaded 240000 transactions
+2026-02-13 17:00:01,626 - transaction_api.repository - INFO - Loaded 250000 transactions
+2026-02-13 17:00:01,986 - transaction_api.repository - INFO - Loaded 260000 transactions
+2026-02-13 17:00:02,345 - transaction_api.repository - INFO - Loaded 270000 transactions
+2026-02-13 17:00:02,706 - transaction_api.repository - INFO - Loaded 280000 transactions
+2026-02-13 17:00:03,066 - transaction_api.repository - INFO - Loaded 290000 transactions
+2026-02-13 17:00:03,420 - transaction_api.repository - INFO - Loaded 300000 transactions
+2026-02-13 17:00:03,779 - transaction_api.repository - INFO - Loaded 310000 transactions
+2026-02-13 17:00:04,137 - transaction_api.repository - INFO - Loaded 320000 transactions
+2026-02-13 17:00:04,498 - transaction_api.repository - INFO - Loaded 330000 transactions
+2026-02-13 17:00:05,043 - transaction_api.repository - INFO - Loaded 340000 transactions
+2026-02-13 17:00:05,410 - transaction_api.repository - INFO - Loaded 350000 transactions
+2026-02-13 17:00:05,762 - transaction_api.repository - INFO - Loaded 360000 transactions
+2026-02-13 17:00:06,119 - transaction_api.repository - INFO - Loaded 370000 transactions
+2026-02-13 17:00:06,470 - transaction_api.repository - INFO - Loaded 380000 transactions
+2026-02-13 17:00:06,830 - transaction_api.repository - INFO - Loaded 390000 transactions
+2026-02-13 17:00:07,186 - transaction_api.repository - INFO - Loaded 400000 transactions
+2026-02-13 17:00:07,540 - transaction_api.repository - INFO - Loaded 410000 transactions
+2026-02-13 17:00:07,898 - transaction_api.repository - INFO - Loaded 420000 transactions
+2026-02-13 17:00:08,258 - transaction_api.repository - INFO - Loaded 430000 transactions
+2026-02-13 17:00:08,836 - transaction_api.repository - INFO - Loaded 440000 transactions
+2026-02-13 17:00:09,193 - transaction_api.repository - INFO - Loaded 450000 transactions
+2026-02-13 17:00:09,557 - transaction_api.repository - INFO - Loaded 460000 transactions
+2026-02-13 17:00:09,915 - transaction_api.repository - INFO - Loaded 470000 transactions
+2026-02-13 17:00:10,276 - transaction_api.repository - INFO - Loaded 480000 transactions
+2026-02-13 17:00:10,634 - transaction_api.repository - INFO - Loaded 490000 transactions
+2026-02-13 17:00:10,987 - transaction_api.repository - INFO - Loaded 500000 transactions
+2026-02-13 17:00:10,987 - transaction_api.repository - INFO - Transaction :500000. Error: 0
+2026-02-13 17:00:47,257 - transaction_api.repository - INFO - Loading transactions from ./data/transactions.csv
+2026-02-13 17:00:47,616 - transaction_api.repository - INFO - Loaded 10000 transactions
+2026-02-13 17:00:47,970 - transaction_api.repository - INFO - Loaded 20000 transactions
+2026-02-13 17:00:48,330 - transaction_api.repository - INFO - Loaded 30000 transactions
+2026-02-13 17:00:48,685 - transaction_api.repository - INFO - Loaded 40000 transactions
+2026-02-13 17:00:49,040 - transaction_api.repository - INFO - Loaded 50000 transactions
+2026-02-13 17:00:49,394 - transaction_api.repository - INFO - Loaded 60000 transactions
+2026-02-13 17:00:49,742 - transaction_api.repository - INFO - Loaded 70000 transactions
+2026-02-13 17:00:50,091 - transaction_api.repository - INFO - Loaded 80000 transactions
+2026-02-13 17:00:50,448 - transaction_api.repository - INFO - Loaded 90000 transactions
+2026-02-13 17:00:50,792 - transaction_api.repository - INFO - Loaded 100000 transactions
+2026-02-13 17:00:51,252 - transaction_api.repository - INFO - Loaded 110000 transactions
+2026-02-13 17:00:51,606 - transaction_api.repository - INFO - Loaded 120000 transactions
+2026-02-13 17:00:51,956 - transaction_api.repository - INFO - Loaded 130000 transactions
+2026-02-13 17:00:52,314 - transaction_api.repository - INFO - Loaded 140000 transactions
+2026-02-13 17:00:52,665 - transaction_api.repository - INFO - Loaded 150000 transactions
+2026-02-13 17:00:53,144 - transaction_api.repository - INFO - Loaded 160000 transactions
+2026-02-13 17:00:53,504 - transaction_api.repository - INFO - Loaded 170000 transactions
+2026-02-13 17:00:53,869 - transaction_api.repository - INFO - Loaded 180000 transactions
+2026-02-13 17:00:54,227 - transaction_api.repository - INFO - Loaded 190000 transactions
+2026-02-13 17:00:54,592 - transaction_api.repository - INFO - Loaded 200000 transactions
+2026-02-13 17:00:54,949 - transaction_api.repository - INFO - Loaded 210000 transactions
+2026-02-13 17:00:55,458 - transaction_api.repository - INFO - Loaded 220000 transactions
+2026-02-13 17:00:55,818 - transaction_api.repository - INFO - Loaded 230000 transactions
+2026-02-13 17:00:56,171 - transaction_api.repository - INFO - Loaded 240000 transactions
+2026-02-13 17:00:56,527 - transaction_api.repository - INFO - Loaded 250000 transactions
+2026-02-13 17:00:56,892 - transaction_api.repository - INFO - Loaded 260000 transactions
+2026-02-13 17:00:57,245 - transaction_api.repository - INFO - Loaded 270000 transactions
+2026-02-13 17:00:57,604 - transaction_api.repository - INFO - Loaded 280000 transactions
+2026-02-13 17:00:58,143 - transaction_api.repository - INFO - Loaded 290000 transactions
+2026-02-13 17:00:58,503 - transaction_api.repository - INFO - Loaded 300000 transactions
+2026-02-13 17:00:58,869 - transaction_api.repository - INFO - Loaded 310000 transactions
+2026-02-13 17:00:59,225 - transaction_api.repository - INFO - Loaded 320000 transactions
+2026-02-13 17:00:59,582 - transaction_api.repository - INFO - Loaded 330000 transactions
+2026-02-13 17:00:59,943 - transaction_api.repository - INFO - Loaded 340000 transactions
+2026-02-13 17:01:00,314 - transaction_api.repository - INFO - Loaded 350000 transactions
+2026-02-13 17:01:00,675 - transaction_api.repository - INFO - Loaded 360000 transactions
+2026-02-13 17:01:01,040 - transaction_api.repository - INFO - Loaded 370000 transactions
+2026-02-13 17:01:01,611 - transaction_api.repository - INFO - Loaded 380000 transactions
+2026-02-13 17:01:01,971 - transaction_api.repository - INFO - Loaded 390000 transactions
+2026-02-13 17:01:02,331 - transaction_api.repository - INFO - Loaded 400000 transactions
+2026-02-13 17:01:02,689 - transaction_api.repository - INFO - Loaded 410000 transactions
+2026-02-13 17:01:03,045 - transaction_api.repository - INFO - Loaded 420000 transactions
+2026-02-13 17:01:03,401 - transaction_api.repository - INFO - Loaded 430000 transactions
+2026-02-13 17:01:03,757 - transaction_api.repository - INFO - Loaded 440000 transactions
+2026-02-13 17:01:04,111 - transaction_api.repository - INFO - Loaded 450000 transactions
+2026-02-13 17:01:04,469 - transaction_api.repository - INFO - Loaded 460000 transactions
+2026-02-13 17:01:04,826 - transaction_api.repository - INFO - Loaded 470000 transactions
+2026-02-13 17:01:05,180 - transaction_api.repository - INFO - Loaded 480000 transactions
+2026-02-13 17:01:05,800 - transaction_api.repository - INFO - Loaded 490000 transactions
+2026-02-13 17:01:06,158 - transaction_api.repository - INFO - Loaded 500000 transactions
+2026-02-13 17:01:06,158 - transaction_api.repository - INFO - Transaction :500000. Error: 0
+2026-02-13 17:01:15,523 - transaction_api.services.transaction_service - WARNING - Transaction not found: nonexistent
+2026-02-13 17:01:15,526 - transaction_api.services.transaction_service - INFO - Deleted transaction: 1
+2026-02-13 17:01:15,526 - transaction_api.services.transaction_service - WARNING - Transaction not found: 1
+2026-02-13 17:01:15,528 - transaction_api.services.transaction_service - WARNING - Transaction not found for deletion: nonexistent
