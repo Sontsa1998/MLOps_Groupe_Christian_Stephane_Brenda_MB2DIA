@@ -88,3 +88,11 @@ class TestRepositoryExtended:
         """Test getting all use_chip types."""
         result = repository.get_all_use_chip_types()
         assert isinstance(result, list)
+
+
+    def test_get_all_by_use_chip(self, repository):
+        """Test getting transactions by use_chip."""
+        use_chip_types = repository.get_all_use_chip_types()
+        if use_chip_types:
+            result = repository.get_all_by_use_chip(use_chip_types[0])
+            assert isinstance(result, list)
