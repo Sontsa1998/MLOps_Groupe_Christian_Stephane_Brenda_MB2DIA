@@ -424,7 +424,7 @@ elif page == "Statistiques":
 
 # Footer
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 📌 Groupe")
+st.sidebar.markdown("**Groupe**")
 st.sidebar.markdown("**Christian SONTSA**")
 st.sidebar.markdown("**Stéphane NZATI** ")
-st.sidebar.markdown("**Brenda Sama**")
+st.sidebar.markdown("**Brenda Camélia Sama**")
