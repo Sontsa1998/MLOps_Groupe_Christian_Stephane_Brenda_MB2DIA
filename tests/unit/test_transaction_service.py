@@ -24,3 +24,10 @@ def test_get_transaction_by_id_not_found(service):
     """Test getting a non-existent transaction."""
     with pytest.raises(TransactionNotFound):
         service.get_transaction_by_id("nonexistent")
+
+
+def test_delete_transaction_existing(service):
+    """Test deleting an existing transaction."""
+    service.delete_transaction("1")
+    with pytest.raises(TransactionNotFound):
+        service.get_transaction_by_id("1")
