@@ -18,3 +18,9 @@ def test_get_transaction_by_id_existing(service, sample_transactions):
     assert transaction.id == "1"
     assert transaction.client_id == "C001"
     assert transaction.amount == 100.0
+
+
+def test_get_transaction_by_id_not_found(service):
+    """Test getting a non-existent transaction."""
+    with pytest.raises(TransactionNotFound):
+        service.get_transaction_by_id("nonexistent")
