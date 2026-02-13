@@ -80,3 +80,9 @@ class AmountBucket(BaseModel):
     range: str = Field(..., description="Range label")
     count: int = Field(..., description="Bucket count")
     percentage: float = Field(..., description="Percentage of total")
+
+
+class AmountDistribution(BaseModel):
+    """Amount distribution statistics."""
+
+    buckets: List[AmountBucket] = Field(..., description="Buckets")
