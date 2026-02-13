@@ -26,28 +26,28 @@ class Transaction(BaseModel):
     errors: Optional[str] = Field(None, description="Error flag")
 
 
-    class Config:
-        """Pydantic config."""
+class Config:
+    """Pydantic config."""
 
-        json_schema_extra = {
-            "example": {
-                "id": "1",
-                "date": "2023-01-01T12:00:00",
-                "client_id": "C001",
-                "card_id": "CARD001",
-                "amount": 100.50,
-                "use_chip": "Swipe Transaction",
-                "merchant_id": "M001",
-                "merchant_city": "New York",
-                "merchant_state": "NY",
-                "zip": "10001",
-                "mcc": "5411",
-                "errors": None,
-            }
+    json_schema_extra = {
+        "example": {
+            "id": "1",
+            "date": "2023-01-01T12:00:00",
+            "client_id": "C001",
+            "card_id": "CARD001",
+            "amount": 100.50,
+            "use_chip": "Swipe Transaction",
+            "merchant_id": "M001",
+            "merchant_city": "New York",
+            "merchant_state": "NY",
+            "zip": "10001",
+            "mcc": "5411",
+            "errors": None,
         }
+    }
 
 
- class PaginationMetadata(BaseModel):
+class PaginationMetadata(BaseModel):
     """Pagination metadata."""
 
     page: int = Field(..., description="Current page number")
@@ -154,8 +154,6 @@ class TopCustomer(BaseModel):
     customer_id: str = Field(..., description="Customer id")
     transaction_count: int = Field(..., description="Transaction count")
     total_amount: float = Field(..., description="Total transaction amount")
-
-
 
 class CustomerSummary(BaseModel):
     """Customer summary."""
