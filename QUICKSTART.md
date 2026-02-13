@@ -37,3 +37,16 @@ Terminal 2 - Démarrer Streamlit:
 ```bash
 streamlit run app.py
 ```
+
+## Accès aux Applications
+
+- **API FastAPI**: http://localhost:8000
+- **Documentation API**: http://localhost:8000/docs
+- **Interface Streamlit**: http://localhost:8501
+
+## Premiers Pas
+
+### 1. Vérifier la santé de l'API
+```bash
+curl http://localhost:8000/api/system/health
+```
