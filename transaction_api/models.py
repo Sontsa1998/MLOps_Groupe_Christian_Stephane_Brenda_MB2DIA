@@ -155,3 +155,11 @@ class TopCustomer(BaseModel):
     transaction_count: int = Field(..., description="Transaction count")
     total_amount: float = Field(..., description="Total transaction amount")
 
+
+
+class CustomerSummary(BaseModel):
+    """Customer summary."""
+
+    customer_id: str = Field(..., description="Customer id")
+    transaction_count: int = Field(..., description="Transaction count")
+
