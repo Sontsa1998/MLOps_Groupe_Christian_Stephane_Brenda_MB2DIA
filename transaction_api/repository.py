@@ -129,3 +129,7 @@ class TransactionRepository:
             self.min_date = transaction.date
         if self.max_date is None or transaction.date > self.max_date:
             self.max_date = transaction.date
+
+    def get_all_transactions(self) -> List[Transaction]:
+        """Get all transactions."""
+        return list(self.transactions.values())
