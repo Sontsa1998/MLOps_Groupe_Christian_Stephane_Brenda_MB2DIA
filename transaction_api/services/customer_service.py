@@ -4,7 +4,7 @@ from typing import List
 
 from transaction_api.exceptions import InvalidPaginationParameters
 from transaction_api.logging_config import get_logger
-from transaction_api.models import CustomerSummary, PaginatedResponse
+from transaction_api.models import Customer, CustomerSummary, PaginatedResponse
 from transaction_api.pagination import PaginationService
 from transaction_api.repository import TransactionRepository
 
@@ -32,15 +32,11 @@ class CustomerService:
 
         customer_ids = self.repository.get_all_customers()
         total_count = len(customer_ids)
-
-        # Sort customer IDs for consistent pagination
         customer_ids = sorted(customer_ids)
 
-        # Apply pagination
         offset = (page - 1) * limit
         paginated_ids = customer_ids[offset : offset + limit]
 
-        # Create customer summaries
         customers = []
         for customer_id in paginated_ids:
             transaction_count = len(
@@ -59,3 +55,28 @@ class CustomerService:
             customers, page, limit, total_count
         )
 
+    def get_customer_details(self, customer_id: str) -> Customer:
+        """Get details for a specific customer."""
+        transactions, _ = self.repository.get_by_customer(
+            customer_id, page=1, limit=1000000
+        )
+
+        if not transactions:
+            return Customer(
+                customer_id=customer_id,
+                transaction_count=0,
+                total_amount=0.0,
+                average_amount=0.0,
+            )
+
+        total_amount = sum(t.amount for t in transactions)
+        average_amount = (
+            total_amount / len(transactions) if transactions else 0.0
+        )
+
+        return Customer(
+            customer_id=customer_id,
+            transaction_count=len(transactions),
+            total_amount=total_amount,
+            average_amount=average_amount,
+        )
