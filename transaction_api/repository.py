@@ -11,3 +11,9 @@ from transaction_api.config import CHUNK_SIZE
 from transaction_api.exceptions import InvalidTransactionData
 from transaction_api.logging_config import get_logger
 from transaction_api.models import SearchFilters, Transaction
+
+logger = get_logger(__name__)
+
+
+class TransactionRepository:
+    """Repository for managing transactions."""
