@@ -251,4 +251,28 @@ class TransactionRepository:
         if transaction.errors:
             self.fraud_index.remove(transaction_id)
 
+    def get_by_customer(
+        self, customer_id: str, page: int = 1, limit: int = 50
+    ) -> Tuple[List[Transaction], int]:
+        """Get transactions for a customer."""
+        if page < 1:
+            page = 1
+        if limit < 1 or limit > 1000:
+            limit = 50
+
+        transaction_ids = self.customer_index.get(customer_id, [])
+        transactions = [
+            self.transactions[tid]
+            for tid in transaction_ids
+            if tid in self.transactions
+        ]
+        transactions = sorted(transactions, key=lambda t: t.date, reverse=True)
+
+        offset = (page - 1) * limit
+        total_count = len(transactions)
+        paginated_transactions = transactions[offset: offset + limit]
+
+        return paginated_transactions, total_count
+
+
 
