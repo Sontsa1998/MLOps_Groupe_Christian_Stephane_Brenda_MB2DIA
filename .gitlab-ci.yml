@@ -65,3 +65,36 @@ deploy:
     - main
     - master
     - dev
+
+# Déploiement local sur Docker
+deploy:local:
+  image: docker:stable
+  stage: deploy
+  tags:
+    - local-docker
+  before_script:
+    - docker --version
+    - docker info
+    - |
+      if [ -n "$CI_REGISTRY_PASSWORD" ]; then
+        echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY" || echo "Login échoué, utilisation du build local"
+      else
+        echo "Pas de registry configuré, utilisation du build local"
+      fi
+  script:
+    - echo "Déploiement sur Docker local..."
+    - docker pull "$CI_REGISTRY_IMAGE:latest" || echo "Image non trouvée dans le registry, build local..."
+    - docker compose down || echo "Aucun conteneur à arrêter"
+    - docker compose pull || echo "Pull échoué, utilisation du build local"
+    - docker compose up -d --build --remove-orphans
+    - sleep 5
+    - docker compose ps
+    - echo "Déploiement terminé avec succès!"
+  environment:
+    name: local
+    url: http://localhost:8000
+  when: manual
+  only:
+    - main
+    - master
+    - dev
