@@ -237,4 +237,3 @@ class TestSystemRoutes:
             or "data_load_date" in data
             or "total_transactions" in data
         )
-
