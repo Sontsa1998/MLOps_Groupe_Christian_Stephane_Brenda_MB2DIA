@@ -139,3 +139,27 @@ async def get_transaction_types() -> list[dict]:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error retrieving transaction types",
         )
+
+@router.get(
+    "/Latest/recent",
+    response_model=PaginatedResponse[Transaction],
+)
+async def get_recent_transactions(
+    limit: int = Query(50, ge=1, le=1000),
+) -> PaginatedResponse[Transaction]:
+    """Get recent transactions."""
+    try:
+        service = get_service()
+        return service.get_recent_transactions(limit=limit)
+    except InvalidPaginationParameters as e:
+        logger.error(f"Invalid limit: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e),
+        )
+    except Exception as e:
+        logger.error(f"Error getting recent transactions: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error retrieving recent transactions",
+        )
