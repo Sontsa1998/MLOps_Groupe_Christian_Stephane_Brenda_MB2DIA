@@ -95,3 +95,12 @@ class TypeStats(BaseModel):
     count: int = Field(..., description="Count")
     total_amount: float = Field(..., description="Total amount")
     average_amount: float = Field(..., description="Average amount")
+
+
+class DailyStats(BaseModel):
+    """Daily statistics."""
+
+    date: date_type = Field(..., description="Date")
+    count: int = Field(..., description="Count")
+    total_amount: float = Field(..., description="Total amount")
+    average_amount: float = Field(..., description="Average amount")
