@@ -39,7 +39,7 @@ def test_delete_transaction_not_found(service):
         service.delete_transaction("nonexistent")
 
 
-test_get_all_transactions(service):
+def test_get_all_transactions(service):
     """Test getting all transactions with pagination."""
     response = service.get_all_transactions(page=1, limit=10)
     assert response.pagination.page == 1
