@@ -163,3 +163,10 @@ class CustomerSummary(BaseModel):
     customer_id: str = Field(..., description="Customer id")
     transaction_count: int = Field(..., description="Transaction count")
 
+
+class HealthStatus(BaseModel):
+    """System health status."""
+
+    status: str = Field(..., description="Health status")
+    response_time_ms: float = Field(..., description="Response time ms")
+
