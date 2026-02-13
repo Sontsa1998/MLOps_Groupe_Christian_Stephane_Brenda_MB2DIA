@@ -15,6 +15,7 @@ logger = get_logger(__name__)
 
 router: APIRouter = APIRouter(prefix="/api/stats", tags=["statistics"])
 
+
 def get_service() -> StatisticsService:
     """Get statistics service instance."""
     if app_context.repository is None:
@@ -23,6 +24,7 @@ def get_service() -> StatisticsService:
             detail="Repository not initialized",
         )
     return StatisticsService(app_context.repository)
+
 
 @router.get("/overview", response_model=OverviewStats)
 async def get_overview_stats() -> OverviewStats:
@@ -37,6 +39,7 @@ async def get_overview_stats() -> OverviewStats:
             detail="Error retrieving overview statistics",
         )
 
+
 @router.get("/amount-distribution", response_model=AmountDistribution)
 async def get_amount_distribution() -> AmountDistribution:
     """Get amount distribution statistics."""
@@ -50,6 +53,7 @@ async def get_amount_distribution() -> AmountDistribution:
             detail="Error retrieving amount distribution",
         )
 
+
 @router.get("/by-type", response_model=list[TypeStats])
 async def get_stats_by_type() -> list[TypeStats]:
     """Get statistics grouped by transaction type."""
@@ -62,6 +66,7 @@ async def get_stats_by_type() -> list[TypeStats]:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error retrieving statistics by type",
         )
+
 
 @router.get("/daily", response_model=list[dict])
 async def get_daily_stats() -> list[dict]:

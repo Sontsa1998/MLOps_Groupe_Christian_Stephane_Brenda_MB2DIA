@@ -62,9 +62,9 @@ def test_invalid_pagination_handling(page, limit):
             assert False, "Should have raised InvalidPaginationParameters"
         except InvalidPaginationParameters:
             pass
-    
-    
-    @given(
+
+
+@given(
     st.lists(
         transaction_strategy(),
         min_size=1,

@@ -1,160 +1,145 @@
-"""Transaction service for business logic."""
+"""Statistics service for business logic."""
 
+from collections import defaultdict
+from datetime import datetime
 from typing import List
 
-from transaction_api.exceptions import (
-    InvalidPaginationParameters,
-    TransactionNotFound,
-)
+from transaction_api.config import AMOUNT_BUCKETS
 from transaction_api.logging_config import get_logger
 from transaction_api.models import (
-    PaginatedResponse,
-    SearchFilters,
-    Transaction,
+    AmountBucket,
+    AmountDistribution,
+    OverviewStats,
+    TypeStats,
 )
-from transaction_api.pagination import PaginationService
 from transaction_api.repository import TransactionRepository
 
 logger = get_logger(__name__)
 
 
-class TransactionService:
-    """Service for transaction operations."""
+class StatisticsService:
+    """Service for statistics operations."""
 
     def __init__(self, repository: TransactionRepository) -> None:
         """Initialize the service."""
         self.repository = repository
 
-    def get_all_transactions(
-        self, page: int = 1, limit: int = 50
-    ) -> PaginatedResponse[Transaction]:
-        """Get all transactions with pagination."""
-        try:
-            page, limit = PaginationService.validate_pagination_params(
-                page, limit
+    def get_overview_stats(self) -> OverviewStats:
+        """Get overview statistics."""
+        transactions = self.repository.get_all_transactions()
+
+        if not transactions:
+            now = datetime.utcnow()
+            return OverviewStats(
+                total_count=0,
+                total_amount=0.0,
+                average_amount=0.0,
+                min_date=now,
+                max_date=now,
             )
-        except InvalidPaginationParameters as e:
-            logger.error(f"Invalid pagination parameters: {e}")
-            raise
 
-        transactions, total_count = self.repository.get_all(
-            page=page, limit=limit
+        total_count = len(transactions)
+        total_amount = sum(t.amount for t in transactions)
+        average_amount = total_amount / total_count if total_count > 0 else 0.0
+        min_date = min(t.date for t in transactions)
+        max_date = max(t.date for t in transactions)
+
+        return OverviewStats(
+            total_count=total_count,
+            total_amount=total_amount,
+            average_amount=average_amount,
+            min_date=min_date,
+            max_date=max_date,
         )
-        return PaginationService.create_paginated_response(
-            transactions, page, limit, total_count
-        )
-    
-    def get_transaction_by_id(self, transaction_id: str) -> Transaction:
-        """Get a transaction by ID."""
-        transaction = self.repository.get_by_id(transaction_id)
-        if transaction is None:
-            logger.warning(f"Transaction not found: {transaction_id}")
-            msg = f"Transaction with ID {transaction_id} not found"
-            raise TransactionNotFound(msg)
-        return transaction
-    
-    def search_transactions(
-        self, filters: SearchFilters, page: int = 1, limit: int = 50
-    ) -> PaginatedResponse[Transaction]:
-        """Search transactions with filters."""
-        try:
-            page, limit = PaginationService.validate_pagination_params(
-                page, limit
+
+    def get_amount_distribution(self) -> AmountDistribution:
+        """Get amount distribution statistics."""
+        transactions = self.repository.get_all_transactions()
+        total_count = len(transactions)
+
+        if total_count == 0:
+            buckets = [
+                AmountBucket(range=b["label"], count=0, percentage=0.0)
+                for b in AMOUNT_BUCKETS
+            ]
+            return AmountDistribution(buckets=buckets)
+
+        # Count transactions in each bucket
+        bucket_counts: dict = defaultdict(int)
+        for transaction in transactions:
+            for bucket in AMOUNT_BUCKETS:
+                if bucket["min"] <= transaction.amount < bucket["max"]:
+                    bucket_counts[bucket["label"]] += 1
+                    break
+
+        # Create bucket responses
+        buckets = []
+        for bucket in AMOUNT_BUCKETS:
+            count = bucket_counts[bucket["label"]]
+            if total_count > 0:
+                percentage = count / total_count * 100
+            else:
+                percentage = 0.0
+            buckets.append(
+                AmountBucket(
+                    range=bucket["label"],
+                    count=count,
+                    percentage=percentage,
+                )
             )
-        except InvalidPaginationParameters as e:
-            logger.error(f"Invalid pagination parameters: {e}")
-            raise
 
-        transactions, total_count = self.repository.search(
-            filters=filters, page=page, limit=limit
-        )
-        return PaginationService.create_paginated_response(
-            transactions, page, limit, total_count
-        )
-    
-    def delete_transaction(self, transaction_id: str) -> None:
-        """Delete a transaction."""
-        transaction = self.repository.get_by_id(transaction_id)
-        if transaction is None:
-            logger.warning(
-                "Transaction not found for deletion: %s",
-                transaction_id,
-            )
-            msg = f"Transaction with ID {transaction_id} not found"
-            raise TransactionNotFound(msg)
+        return AmountDistribution(buckets=buckets)
 
-        self.repository.delete(transaction_id)
-        logger.info(f"Deleted transaction: {transaction_id}")
-    
-    def get_transaction_types(self) -> List[dict]:
-        """Get all transaction types (use_chip) with counts."""
-        use_chip_types = self.repository.get_all_use_chip_types()
-        type_stats: List[dict] = []
+    def get_stats_by_type(self) -> List[TypeStats]:
+        """Get statistics grouped by transaction type."""
+        types = self.repository.get_all_types()
+        type_stats = []
 
-        for use_chip in use_chip_types:
-            transactions = self.repository.get_all_by_use_chip(use_chip)
-            type_stats.append(
+        for mcc in types:
+            transactions = self.repository.get_all_by_type(mcc)
+            if transactions:
+                count = len(transactions)
+                total_amount = sum(t.amount for t in transactions)
+                average_amount = total_amount / count if count > 0 else 0.0
+
+                type_stats.append(
+                    TypeStats(
+                        type=mcc,
+                        count=count,
+                        total_amount=total_amount,
+                        average_amount=average_amount,
+                    )
+                )
+
+        # Sort by count descending
+        type_stats.sort(key=lambda x: x.count, reverse=True)
+        return type_stats
+
+    def get_daily_stats(self) -> list[dict]:
+        """Get daily statistics grouped by date."""
+        transactions = self.repository.get_all_transactions()
+
+        # Group by date
+        daily_data = defaultdict(list)
+        for transaction in transactions:
+            day = transaction.date.date()
+            daily_data[day].append(transaction)
+
+        # Create daily stats
+        daily_stats = []
+        for day in sorted(daily_data.keys()):
+            transactions_on_day = daily_data[day]
+            count = len(transactions_on_day)
+            total_amount = sum(t.amount for t in transactions_on_day)
+            average_amount = total_amount / count if count > 0 else 0.0
+
+            daily_stats.append(
                 {
-                    "type": use_chip,
-                    "count": len(transactions),
+                    "date": str(day),
+                    "count": count,
+                    "total_amount": total_amount,
+                    "average_amount": average_amount,
                 }
             )
 
-        # Sort by count descending
-        type_stats.sort(key=lambda x: x["count"], reverse=True)  # type: ignore
-        return type_stats
-    
-    def get_recent_transactions(
-        self, limit: int = 50
-    ) -> PaginatedResponse[Transaction]:
-        """Get recent transactions."""
-        try:
-            _, limit = PaginationService.validate_pagination_params(1, limit)
-        except InvalidPaginationParameters as e:
-            logger.error(f"Invalid limit: {e}")
-            raise
-
-        transactions, total_count = self.repository.get_all(
-            page=1, limit=limit
-        )
-        return PaginationService.create_paginated_response(
-            transactions, 1, limit, total_count
-        )
-    
-    def get_customer_transactions(
-        self, customer_id: str, page: int = 1, limit: int = 50
-    ) -> PaginatedResponse[Transaction]:
-        """Get transactions for a customer."""
-        try:
-            page, limit = PaginationService.validate_pagination_params(
-                page, limit
-            )
-        except InvalidPaginationParameters as e:
-            logger.error(f"Invalid pagination parameters: {e}")
-            raise
-
-        transactions, total_count = self.repository.get_by_customer(
-            customer_id=customer_id, page=page, limit=limit
-        )
-        return PaginationService.create_paginated_response(
-            transactions, page, limit, total_count
-        )
-    
-    def get_merchant_transactions(
-        self, merchant_id: str, page: int = 1, limit: int = 50
-    ) -> PaginatedResponse[Transaction]:
-        """Get transactions for a merchant."""
-        try:
-            page, limit = PaginationService.validate_pagination_params(
-                page, limit
-            )
-        except InvalidPaginationParameters as e:
-            logger.error(f"Invalid pagination parameters: {e}")
-            raise
-
-        transactions, total_count = self.repository.get_by_merchant(
-            merchant_id=merchant_id, page=page, limit=limit
-        )
-        return PaginationService.create_paginated_response(
-            transactions, page, limit, total_count
-        )
+        return daily_stats
