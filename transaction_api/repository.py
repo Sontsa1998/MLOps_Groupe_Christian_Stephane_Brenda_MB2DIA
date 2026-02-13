@@ -329,6 +329,15 @@ class TransactionRepository:
     def get_all_use_chip_types(self) -> List[str]:
         """Get all unique use_chip types."""
         return list(self.use_chip_index.keys())
+    
+    def get_all_by_use_chip(self, use_chip: str) -> List[Transaction]:
+        """Get all transactions of a specific use_chip type."""
+        transaction_ids = self.use_chip_index.get(use_chip, [])
+        return [
+            self.transactions[tid]
+            for tid in transaction_ids
+            if tid in self.transactions
+        ]
 
 
 
