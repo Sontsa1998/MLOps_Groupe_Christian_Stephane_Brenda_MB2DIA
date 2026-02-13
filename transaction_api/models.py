@@ -72,3 +72,11 @@ class OverviewStats(BaseModel):
     average_amount: float = Field(..., description="Average amount")
     min_date: datetime = Field(..., description="Earliest date")
     max_date: datetime = Field(..., description="Latest date")
+
+
+class AmountBucket(BaseModel):
+    """Amount distribution bucket."""
+
+    range: str = Field(..., description="Range label")
+    count: int = Field(..., description="Bucket count")
+    percentage: float = Field(..., description="Percentage of total")
