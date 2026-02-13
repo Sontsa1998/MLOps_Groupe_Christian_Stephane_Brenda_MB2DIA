@@ -111,3 +111,14 @@ class TestRepositoryExtended:
         assert isinstance(result, list)
         assert len(result) <= 10
         assert isinstance(total, int)
+
+
+    def test_delete_transaction(self, repository):
+        """Test deleting a transaction."""
+        transactions = repository.get_all_transactions()
+        if transactions:
+            transaction_id = transactions[0].id
+            initial_count = len(repository.get_all_transactions())
+            repository.delete(transaction_id)
+            new_count = len(repository.get_all_transactions())
+            assert new_count == initial_count - 1
