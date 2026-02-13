@@ -147,3 +147,91 @@ if page == "Dashboard":
                 df_daily, x="date", y="count", title="Transactions par Jour"
             )
             st.plotly_chart(fig, use_container_width=True)
+
+# Clients Page
+elif page == "Clients":
+    st.title("👥 Clients")
+
+    tab1, tab2, tab3 = st.tabs(
+        ["Liste des Clients", "Détails Client", "Top Clients"]
+    )
+
+    with tab1:
+        st.subheader("Liste Paginée des Clients")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            limit = st.selectbox(
+                "Éléments par page", [10, 25, 50], key="customer_limit"
+            )
+
+        customers_data = get_data(
+            "/customers",
+            params={"page": st.session_state.customer_page, "limit": limit},
+        )
+
+        if customers_data:
+            if isinstance(customers_data, dict) and "data" in customers_data:
+                df = pd.DataFrame(customers_data["data"])
+                st.dataframe(df, use_container_width=True)
+
+                # Pagination
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    if st.button("⬅️ Précédent", key="prev_customer"):
+                        if st.session_state.customer_page > 1:
+                            st.session_state.customer_page -= 1
+                            st.rerun()
+
+                with col2:
+                    st.write(f"Page {st.session_state.customer_page}")
+
+                with col3:
+                    if st.button("Suivant ➡️", key="next_customer"):
+                        st.session_state.customer_page += 1
+                        st.rerun()
+
+    with tab2:
+        st.subheader("Détails Client")
+        customer_id = st.text_input("ID Client")
+
+        if customer_id:
+            customer = get_data(f"/customers/{customer_id}")
+            if customer:
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("ID Client", customer.get("customer_id", "N/A"))
+                with col2:
+                    st.metric(
+                        "Nombre de Transactions",
+                        customer.get("transaction_count", 0),
+                    )
+                with col3:
+                    st.metric(
+                        "Montant Total",
+                        f"${customer.get('total_amount', 0):,.2f}",
+                    )
+
+                st.metric(
+                    "Montant Moyen",
+                    f"${customer.get('average_amount', 0):,.2f}",
+                )
+
+    with tab3:
+        st.subheader("Top Clients")
+        n = st.slider("Nombre de clients", 1, 50, 10)
+
+        top_customers = get_data("/customers/Ranked/top", params={"n": n})
+        if top_customers:
+            df = pd.DataFrame(top_customers)
+            st.dataframe(df, use_container_width=True)
+
+            # Chart
+            if not df.empty:
+                fig = px.bar(
+                    df,
+                    x="customer_id",
+                    y="transaction_count",
+                    title="Top Clients par Nombre de Transactions",
+                )
+                st.plotly_chart(fig, use_container_width=True)
