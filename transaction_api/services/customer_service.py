@@ -38,11 +38,14 @@ class CustomerService:
         customer_ids = self.repository.get_all_customers()
         total_count = len(customer_ids)
 
+        # Sort customer IDs for consistent pagination
         customer_ids = sorted(customer_ids)
 
+        # Apply pagination
         offset = (page - 1) * limit
         paginated_ids = customer_ids[offset : offset + limit]
 
+        # Create customer summaries
         customers = []
         for customer_id in paginated_ids:
             transaction_count = len(
@@ -68,6 +71,7 @@ class CustomerService:
         )
 
         if not transactions:
+            # Return empty customer
             return Customer(
                 customer_id=customer_id,
                 transaction_count=0,
@@ -91,6 +95,7 @@ class CustomerService:
         """Get top n customers by transaction count."""
         customer_ids = self.repository.get_all_customers()
 
+        # Get customer details for all customers
         top_customers_list: List[TopCustomer] = []
         for customer_id in customer_ids:
             transactions, _ = self.repository.get_by_customer(
@@ -106,10 +111,12 @@ class CustomerService:
                     )
                 )
 
+        # Sort by transaction count descending
         top_customers_list.sort(
             key=lambda c: c.transaction_count,
             reverse=True,
         )
 
+        # Get only top n customers
         return top_customers_list[:n]
 
