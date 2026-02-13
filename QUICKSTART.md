@@ -99,3 +99,33 @@ pytest tests/unit/ -v
 └── data/
     └── transactions.csv     # Données
 ```
+
+## Configuration
+
+```
+
+### Fichier de données
+Le fichier `data/transactions.csv` doit contenir les colonnes:
+- id, date, client_id, card_id, amount, use_chip, merchant_id, merchant_city, merchant_state, zip, mcc, errors
+
+## Dépannage
+
+### L'API ne démarre pas
+```bash
+# Vérifier que le port 8000 est libre
+lsof -i :8000  # Linux/Mac
+netstat -ano | findstr :8000  # Windows
+
+# Vérifier les logs
+python -m uvicorn transaction_api.main:app --reload --log-level debug
+```
+
+### Streamlit ne se connecte pas
+- Vérifier que l'API est en cours d'exécution
+- Vérifier l'URL dans `app.py` (ligne: `API_BASE_URL = "http://localhost:8000/api"`)
+- Vérifier la connectivité réseau
+
+### Erreurs de données
+- Vérifier que `data/transactions.csv` existe
+- Vérifier le format du CSV (encodage UTF-8)
+- Vérifier que les dates sont au format `YYYY-MM-DD HH:MM:SS`
