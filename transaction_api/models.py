@@ -104,3 +104,11 @@ class DailyStats(BaseModel):
     count: int = Field(..., description="Count")
     total_amount: float = Field(..., description="Total amount")
     average_amount: float = Field(..., description="Average amount")
+
+
+class FraudSummary(BaseModel):
+    """Fraud detection summary."""
+
+    total_fraud_count: int = Field(..., description="Fraud count")
+    fraud_rate: float = Field(..., description="Fraud rate")
+    total_fraud_amount: float = Field(..., description="Fraud amount")
