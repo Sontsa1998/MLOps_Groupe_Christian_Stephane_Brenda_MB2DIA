@@ -75,3 +75,22 @@ async def get_transaction(transaction_id: str) -> Transaction:
             detail="Error retrieving transaction",
         )
 
+
+@router.delete("/{transaction_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_transaction(transaction_id: str) -> None:
+    """Delete a transaction."""
+    try:
+        service = get_service()
+        service.delete_transaction(transaction_id)
+    except TransactionNotFound as e:
+        logger.warning(f"Transaction not found for deletion: {transaction_id}")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(e),
+        )
+    except Exception as e:
+        logger.error(f"Error deleting transaction: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error deleting transaction",
+        )
