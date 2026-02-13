@@ -70,3 +70,15 @@ class TestRepositoryExtended:
         """Test getting fraud transactions."""
         result = repository.get_fraud_transactions()
         assert isinstance(result, list)
+
+
+    def test_get_all_customers(self, repository):
+        """Test getting all customers."""
+        result = repository.get_all_customers()
+        assert isinstance(result, list)
+        assert len(result) > 0
+
+    def test_get_all_types(self, repository):
+        """Test getting all transaction types."""
+        result = repository.get_all_types()
+        assert isinstance(result, list)
