@@ -121,3 +121,5 @@ class FraudService:
 
         reasoning = "; ".join(reasons)
         return reasoning
+    
+    
