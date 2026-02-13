@@ -317,6 +317,10 @@ class TransactionRepository:
             for tid in self.fraud_index
             if tid in self.transactions
         ]
+    
+    def get_all_types(self) -> List[str]:
+        """Get all unique transaction types."""
+        return list(self.type_index.keys())
 
 
 
