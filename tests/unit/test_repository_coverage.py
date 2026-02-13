@@ -33,3 +33,9 @@ class TestRepositoryExtended:
         result, total = repository.get_by_customer("1556")
         assert isinstance(result, list)
         assert isinstance(total, int)
+    
+    def test_get_by_merchant(self, repository):
+        """Test getting transactions by merchant."""
+        result, total = repository.get_by_merchant("1556")
+        assert isinstance(result, list)
+        assert isinstance(total, int)
