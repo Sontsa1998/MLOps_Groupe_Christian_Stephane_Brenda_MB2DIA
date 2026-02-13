@@ -152,3 +152,7 @@ class TransactionRepository:
         total_count = len(all_transactions)
         transactions = all_transactions[offset: offset + limit]
         return transactions, total_count
+    
+    def get_by_id(self, transaction_id: str) -> Optional[Transaction]:
+        """Get a transaction by ID."""
+        return self.transactions.get(transaction_id)
