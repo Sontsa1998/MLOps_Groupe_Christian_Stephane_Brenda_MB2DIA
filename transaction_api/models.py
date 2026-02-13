@@ -25,7 +25,6 @@ class Transaction(BaseModel):
     mcc: str = Field(..., description="Merchant category code")
     errors: Optional[str] = Field(None, description="Error flag")
 
-
     class Config:
         """Pydantic config."""
 
@@ -47,7 +46,7 @@ class Transaction(BaseModel):
         }
 
 
- class PaginationMetadata(BaseModel):
+class PaginationMetadata(BaseModel):
     """Pagination metadata."""
 
     page: int = Field(..., description="Current page number")
@@ -150,11 +149,10 @@ class Customer(BaseModel):
 
 class TopCustomer(BaseModel):
     """Top customer summary."""
-
+    
     customer_id: str = Field(..., description="Customer id")
     transaction_count: int = Field(..., description="Transaction count")
     total_amount: float = Field(..., description="Total transaction amount")
-
 
 
 class CustomerSummary(BaseModel):
@@ -198,4 +196,3 @@ class SearchFilters(BaseModel):
     transaction_id: Optional[str] = Field(None, description="Transaction id")
     merchant_city: Optional[str] = Field(None, description="Merchant city")
     use_chip: Optional[str] = Field(None, description="Transaction type")
-
