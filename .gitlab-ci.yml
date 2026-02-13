@@ -73,6 +73,7 @@ deploy:local:
   tags:
     - local-docker
   before_script:
+    - mkdir -p reports
     - docker --version
     - docker info
     - |
@@ -90,6 +91,7 @@ deploy:local:
     - sleep 5
     - docker compose ps
     - echo "Déploiement terminé avec succès!"
+    - pytest --junitxml=reports/tests-execution-report.xml --cov-report xml:reports/tests-coverage-report.xml --cov=transaction_api
   environment:
     name: local
     url: http://localhost:8000
