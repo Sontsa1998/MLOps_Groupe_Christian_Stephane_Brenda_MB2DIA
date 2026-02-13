@@ -130,3 +130,11 @@ class FraudUseChipStats(BaseModel):
     fraud_count: int = Field(..., description="Fraud count")
     fraud_rate: float = Field(..., description="Fraud rate")
     total_count: int = Field(..., description="Total count")
+
+
+class FraudPrediction(BaseModel):
+    """Fraud prediction result."""
+
+    fraud_score: float = Field(..., ge=0.0, le=1.0, description="Fraud score")
+    reasoning: str = Field(..., description="Reasoning")
+
