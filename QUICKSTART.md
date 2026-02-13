@@ -129,3 +129,32 @@ python -m uvicorn transaction_api.main:app --reload --log-level debug
 - Vérifier que `data/transactions.csv` existe
 - Vérifier le format du CSV (encodage UTF-8)
 - Vérifier que les dates sont au format `YYYY-MM-DD HH:MM:SS`
+
+## Documentation Complète
+
+Voir [README.md](README.md) pour la documentation complète incluant:
+- Architecture détaillée
+- Documentation complète des routes API
+- Exemples d'utilisation
+- Couverture de tests
+- Fonctionnalités Streamlit
+
+## Conseils
+
+1. **Développement**: Utiliser `--reload` avec uvicorn pour rechargement automatique
+2. **Tests**: Exécuter les tests régulièrement avec `pytest`
+3. **Logs**: Vérifier les logs pour déboguer les problèmes
+
+## Prochaines Étapes
+
+1. Explorer l'interface Streamlit
+2. Tester les endpoints API avec Swagger UI
+3. Exécuter les tests pour vérifier la couverture
+4. Consulter la documentation complète
+
+## Lexique
+
+Pour plus d'informations, consultez:
+- [FastAPI Docs](https://fastapi.tiangolo.com/)
+- [Streamlit Docs](https://docs.streamlit.io/)
+- [README.md](README.md)
