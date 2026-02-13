@@ -4,7 +4,12 @@ from typing import List
 
 from transaction_api.exceptions import InvalidPaginationParameters
 from transaction_api.logging_config import get_logger
-from transaction_api.models import Customer, CustomerSummary, PaginatedResponse
+from transaction_api.models import (
+    Customer,
+    CustomerSummary,
+    PaginatedResponse,
+    TopCustomer,
+)
 from transaction_api.pagination import PaginationService
 from transaction_api.repository import TransactionRepository
 
@@ -32,6 +37,7 @@ class CustomerService:
 
         customer_ids = self.repository.get_all_customers()
         total_count = len(customer_ids)
+
         customer_ids = sorted(customer_ids)
 
         offset = (page - 1) * limit
@@ -57,7 +63,7 @@ class CustomerService:
 
     def get_customer_details(self, customer_id: str) -> Customer:
         """Get details for a specific customer."""
-        transactions, _ = self.repository.get_by_customer(
+        transactions, total_count = self.repository.get_by_customer(
             customer_id, page=1, limit=1000000
         )
 
@@ -80,3 +86,30 @@ class CustomerService:
             total_amount=total_amount,
             average_amount=average_amount,
         )
+
+    def get_top_customers(self, n: int = 10) -> List[TopCustomer]:
+        """Get top n customers by transaction count."""
+        customer_ids = self.repository.get_all_customers()
+
+        top_customers_list: List[TopCustomer] = []
+        for customer_id in customer_ids:
+            transactions, _ = self.repository.get_by_customer(
+                customer_id, page=1, limit=1000000
+            )
+            if transactions:
+                total_amount = sum(t.amount for t in transactions)
+                top_customers_list.append(
+                    TopCustomer(
+                        customer_id=customer_id,
+                        transaction_count=len(transactions),
+                        total_amount=total_amount,
+                    )
+                )
+
+        top_customers_list.sort(
+            key=lambda c: c.transaction_count,
+            reverse=True,
+        )
+
+        return top_customers_list[:n]
+
