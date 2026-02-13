@@ -138,3 +138,12 @@ class FraudPrediction(BaseModel):
     fraud_score: float = Field(..., ge=0.0, le=1.0, description="Fraud score")
     reasoning: str = Field(..., description="Reasoning")
 
+
+class Customer(BaseModel):
+    """Customer details."""
+
+    customer_id: str = Field(..., description="Customer id")
+    transaction_count: int = Field(..., description="Transaction count")
+    total_amount: float = Field(..., description="Total amount")
+    average_amount: float = Field(..., description="Average amount")
+
