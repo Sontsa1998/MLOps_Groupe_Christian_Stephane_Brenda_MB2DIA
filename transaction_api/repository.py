@@ -133,3 +133,22 @@ class TransactionRepository:
     def get_all_transactions(self) -> List[Transaction]:
         """Get all transactions."""
         return list(self.transactions.values())
+    
+    def get_all(
+        self, page: int = 1, limit: int = 50
+    ) -> Tuple[List[Transaction], int]:
+        """Get paginated transactions."""
+        if page < 1:
+            page = 1
+        if limit < 1 or limit > 1000:
+            limit = 50
+
+        offset = (page - 1) * limit
+        all_transactions = sorted(
+            self.transactions.values(),
+            key=lambda t: t.date,
+            reverse=True,
+        )
+        total_count = len(all_transactions)
+        transactions = all_transactions[offset: offset + limit]
+        return transactions, total_count
