@@ -96,3 +96,18 @@ class TestRepositoryExtended:
         if use_chip_types:
             result = repository.get_all_by_use_chip(use_chip_types[0])
             assert isinstance(result, list)
+
+
+    def test_get_all_by_type(self, repository):
+        """Test getting transactions by type."""
+        types = repository.get_all_types()
+        if types:
+            result = repository.get_all_by_type(types[0])
+            assert isinstance(result, list)
+
+    def test_get_all_paginated(self, repository):
+        """Test getting all transactions paginated."""
+        result, total = repository.get_all(page=1, limit=10)
+        assert isinstance(result, list)
+        assert len(result) <= 10
+        assert isinstance(total, int)
