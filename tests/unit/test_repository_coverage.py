@@ -18,3 +18,12 @@ class TestRepositoryExtended:
         """Test getting all transactions."""
         transactions = repository.get_all_transactions()
         assert len(transactions) > 0
+    
+    def test_get_by_id(self, repository):
+        """Test getting transaction by ID."""
+        transactions = repository.get_all_transactions()
+        if transactions:
+            transaction_id = transactions[0].id
+            result = repository.get_by_id(transaction_id)
+            assert result is not None
+            assert result.id == transaction_id
