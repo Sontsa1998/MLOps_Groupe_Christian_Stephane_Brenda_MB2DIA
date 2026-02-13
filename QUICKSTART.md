@@ -50,3 +50,30 @@ streamlit run app.py
 ```bash
 curl http://localhost:8000/api/system/health
 ```
+
+### 2. Obtenir les statistiques
+```bash
+curl http://localhost:8000/api/stats/overview
+```
+
+### 3. Lister les clients
+```bash
+curl http://localhost:8000/api/customers?page=1&limit=10
+```
+
+### 4. Accéder à l'interface Streamlit
+Ouvrir http://localhost:8501 dans votre navigateur
+
+## Exécuter les Tests
+
+```bash
+# Tous les tests
+pytest
+
+# Avec rapport de couverture
+pytest --cov=transaction_api --cov-report=html
+
+# Tests spécifiques
+pytest tests/integration/ -v
+pytest tests/unit/ -v
+```
