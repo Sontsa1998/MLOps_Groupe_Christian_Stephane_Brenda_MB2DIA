@@ -321,6 +321,10 @@ class TransactionRepository:
     def get_all_types(self) -> List[str]:
         """Get all unique transaction types."""
         return list(self.type_index.keys())
+    
+    def get_all_customers(self) -> List[str]:
+        """Get all unique customer IDs."""
+        return list(self.customer_index.keys())
 
 
 
