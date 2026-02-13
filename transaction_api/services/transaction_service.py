@@ -16,3 +16,29 @@ from transaction_api.pagination import PaginationService
 from transaction_api.repository import TransactionRepository
 
 logger = get_logger(__name__)
+
+class TransactionService:
+    """Service for transaction operations."""
+
+    def __init__(self, repository: TransactionRepository) -> None:
+        """Initialize the service."""
+        self.repository = repository
+
+    def get_all_transactions(
+        self, page: int = 1, limit: int = 50
+    ) -> PaginatedResponse[Transaction]:
+        """Get all transactions with pagination."""
+        try:
+            page, limit = PaginationService.validate_pagination_params(
+                page, limit
+            )
+        except InvalidPaginationParameters as e:
+            logger.error(f"Invalid pagination parameters: {e}")
+            raise
+
+        transactions, total_count = self.repository.get_all(
+            page=page, limit=limit
+        )
+        return PaginationService.create_paginated_response(
+            transactions, page, limit, total_count
+        )
