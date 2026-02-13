@@ -309,6 +309,14 @@ class TransactionRepository:
             for tid in transaction_ids
             if tid in self.transactions
         ]
+    
+    def get_fraud_transactions(self) -> List[Transaction]:
+        """Get all fraudulent transactions."""
+        return [
+            self.transactions[tid]
+            for tid in self.fraud_index
+            if tid in self.transactions
+        ]
 
 
 
